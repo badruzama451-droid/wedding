@@ -1,0 +1,1496 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    background: #f6f0e6;
+
+    color: #382f27;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    overflow-x: hidden;
+
+}
+
+
+body.locked {
+    overflow: hidden;
+}
+
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+:root {
+
+    --cream: #f6f0e6;
+
+    --cream-dark: #eee4d4;
+
+    --gold: #b99552;
+
+    --gold-light: #d2b875;
+
+    --maroon: #713f3c;
+
+    --text: #382f27;
+
+    --muted: #766d62;
+
+    --white: #fffaf2;
+
+}
+
+
+/* =========================================
+   OPENING
+========================================= */
+
+#opening {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffaf2 0%,
+            #f6f0e6 60%,
+            #e9decd 100%
+        );
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+
+}
+
+
+#opening.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+.opening-pattern {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.13;
+
+    background-image:
+
+        linear-gradient(
+            45deg,
+            transparent 48%,
+            var(--gold) 49%,
+            var(--gold) 51%,
+            transparent 52%
+        ),
+
+        linear-gradient(
+            -45deg,
+            transparent 48%,
+            var(--gold) 49%,
+            var(--gold) 51%,
+            transparent 52%
+        );
+
+    background-size: 70px 70px;
+
+}
+
+
+.opening-inner {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(90%, 600px);
+
+    text-align: center;
+
+    animation:
+        openingReveal
+        1.4s
+        ease
+        forwards;
+
+}
+
+
+.gold-star {
+
+    color: var(--gold);
+
+    font-size: 27px;
+
+    margin-bottom: 22px;
+
+    animation:
+        starGlow
+        3s
+        ease-in-out
+        infinite;
+
+}
+
+
+.bismillah {
+
+    font-size: 24px;
+
+    line-height: 1.8;
+
+}
+
+
+.gold-line {
+
+    width: 90px;
+
+    height: 1px;
+
+    margin: 20px auto;
+
+    background: var(--gold);
+
+    transform-origin: center;
+
+    animation:
+        lineGrow
+        1.5s
+        ease
+        0.5s
+        both;
+
+}
+
+
+.opening-label {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    color: var(--muted);
+
+}
+
+
+.opening-title {
+
+    margin-top: 35px;
+
+    font-size:
+        clamp(
+            48px,
+            13vw,
+            85px
+        );
+
+    font-weight: 400;
+
+    letter-spacing: 4px;
+
+    line-height: 0.9;
+
+}
+
+
+.opening-title span {
+
+    display: block;
+
+    margin-top: 12px;
+
+    font-size: 0.45em;
+
+    color: var(--maroon);
+
+    letter-spacing: 8px;
+
+}
+
+
+.opening-subtitle {
+
+    margin-top: 25px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+}
+
+
+#openInvitation {
+
+    margin-top: 42px;
+
+    padding: 16px 25px;
+
+    border: 1px solid var(--gold);
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        background .4s ease,
+        color .4s ease,
+        transform .4s ease;
+
+}
+
+
+#openInvitation b {
+
+    margin-left: 15px;
+
+    font-size: 15px;
+
+}
+
+
+#openInvitation:hover {
+
+    background: var(--gold);
+
+    color: white;
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* =========================================
+   FLORAL DECORATION
+========================================= */
+
+.floral {
+
+    position: absolute;
+
+    color: var(--gold);
+
+    opacity: .15;
+
+    font-size: 130px;
+
+}
+
+
+.floral-left {
+
+    left: -45px;
+
+    bottom: 10%;
+
+    transform:
+        rotate(-25deg);
+
+}
+
+
+.floral-right {
+
+    right: -45px;
+
+    top: 10%;
+
+    transform:
+        rotate(25deg);
+
+}
+
+
+/* =========================================
+   WEBSITE
+========================================= */
+
+#website {
+
+    opacity: 0;
+
+    transition:
+        opacity 1.4s ease;
+
+}
+
+
+#website.show {
+
+    opacity: 1;
+
+}
+
+
+.section {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    padding:
+        100px
+        24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.8),
+            transparent 60%
+        ),
+
+        var(--cream);
+
+}
+
+
+.hero-arch {
+
+    position: absolute;
+
+    width: min(88vw, 520px);
+
+    height: min(115vw, 620px);
+
+    border:
+
+        1px solid
+        rgba(185,149,82,.35);
+
+    border-bottom: none;
+
+    border-radius:
+
+        300px
+        300px
+        0
+        0;
+
+    opacity: .8;
+
+    animation:
+        archReveal
+        2s
+        ease
+        forwards;
+
+}
+
+
+.arch-inner {
+
+    position: absolute;
+
+    inset: 14px;
+
+    border:
+
+        1px solid
+        rgba(185,149,82,.17);
+
+    border-bottom: none;
+
+    border-radius:
+
+        290px
+        290px
+        0
+        0;
+
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 700px;
+
+}
+
+
+.eyebrow {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    color: var(--gold);
+
+}
+
+
+.arabic-title {
+
+    margin-top: 22px;
+
+    color: var(--maroon);
+
+    font-size: 40px;
+
+}
+
+
+.invitation-text {
+
+    max-width: 470px;
+
+    margin:
+        25px
+        auto;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    color: var(--muted);
+
+}
+
+
+.couple h1 {
+
+    font-size:
+        clamp(
+            39px,
+            10vw,
+            75px
+        );
+
+    font-weight: 400;
+
+    line-height: 1;
+
+}
+
+
+.ampersand {
+
+    margin:
+        16px
+        0;
+
+    font-size: 24px;
+
+    color: var(--gold);
+
+}
+
+
+.ornament-divider {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin:
+        38px
+        auto;
+
+    width: min(80%, 300px);
+
+}
+
+
+.ornament-divider span {
+
+    height: 1px;
+
+    flex: 1;
+
+    background:
+        rgba(185,149,82,.45);
+
+}
+
+
+.ornament-divider b {
+
+    color: var(--gold);
+
+    font-size: 12px;
+
+}
+
+
+.date-display {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 25px;
+
+}
+
+
+.date-number {
+
+    font-size: 48px;
+
+    color: var(--maroon);
+
+}
+
+
+.date-month {
+
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: left;
+
+}
+
+
+.date-month span {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.date-month small {
+
+    margin-top: 5px;
+
+    font-family: Arial, sans-serif;
+
+    color: var(--muted);
+
+}
+
+
+.date-time {
+
+    padding-left: 25px;
+
+    border-left:
+        1px solid
+        rgba(185,149,82,.4);
+
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: left;
+
+}
+
+
+.date-time span {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: var(--muted);
+
+}
+
+
+.date-time strong {
+
+    margin-top: 5px;
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+}
+
+
+.scroll-indicator {
+
+    position: absolute;
+
+    bottom: 28px;
+
+    z-index: 3;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 3px;
+
+    color: var(--muted);
+
+}
+
+
+.scroll-indicator span {
+
+    display: block;
+
+    width: 1px;
+
+    height: 30px;
+
+    margin:
+        0
+        auto
+        10px;
+
+    background: var(--gold);
+
+    animation:
+        scrollLine
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.message-section {
+
+    background: #efe5d5;
+
+}
+
+
+.small-symbol {
+
+    color: var(--gold);
+
+    font-size: 25px;
+
+}
+
+
+.message-section h2,
+.countdown-section h2,
+.venue-section h2,
+.family-section h2,
+.final-section h2 {
+
+    margin-top: 25px;
+
+    font-size:
+        clamp(
+            37px,
+            9vw,
+            65px
+        );
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+}
+
+
+.body-text {
+
+    max-width: 500px;
+
+    margin-top: 30px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+
+    color: var(--muted);
+
+}
+
+
+/* =========================================
+   DATE CARD
+========================================= */
+
+.date-section {
+
+    background: var(--cream);
+
+}
+
+
+.date-card {
+
+    width: min(100%, 600px);
+
+    padding:
+        60px
+        30px;
+
+    border:
+        1px solid
+        rgba(185,149,82,.4);
+
+}
+
+
+.big-date {
+
+    margin-top: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+}
+
+
+.big-date strong {
+
+    font-size: 90px;
+
+    font-weight: 400;
+
+    color: var(--maroon);
+
+}
+
+
+.big-date div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: left;
+
+}
+
+
+.big-date span {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+}
+
+
+.big-date small {
+
+    margin-top: 5px;
+
+    font-family: Arial, sans-serif;
+
+    color: var(--muted);
+
+}
+
+
+.gold-divider {
+
+    width: 70px;
+
+    height: 1px;
+
+    margin: 35px auto;
+
+    background: var(--gold);
+
+}
+
+
+.time-label {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: var(--muted);
+
+}
+
+
+.date-card h3 {
+
+    margin-top: 10px;
+
+    font-size: 25px;
+
+    font-weight: 400;
+
+    color: var(--maroon);
+
+}
+
+
+/* =========================================
+   COUNTDOWN
+========================================= */
+
+.countdown-section {
+
+    background: #713f3c;
+
+    color: #fff9ef;
+
+}
+
+
+.countdown-section .eyebrow {
+
+    color: #d7b96f;
+
+}
+
+
+.countdown-section h2 {
+
+    color: #fff9ef;
+
+}
+
+
+.countdown {
+
+    width: min(100%, 650px);
+
+    margin-top: 55px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+
+}
+
+
+.count-box {
+
+    padding: 25px 5px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+}
+
+
+.count-box strong {
+
+    display: block;
+
+    font-size:
+        clamp(
+            30px,
+            7vw,
+            55px
+        );
+
+    font-weight: 400;
+
+    color: #e0c27a;
+
+}
+
+
+.count-box span {
+
+    display: block;
+
+    margin-top: 7px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    opacity: .7;
+
+}
+
+
+/* =========================================
+   VENUE
+========================================= */
+
+.venue-section {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffaf3,
+            var(--cream)
+        );
+
+}
+
+
+.venue-icon {
+
+    margin-top: 35px;
+
+    font-size: 35px;
+
+    color: var(--gold);
+
+}
+
+
+.venue-divider {
+
+    margin: 25px;
+
+    color: var(--gold);
+
+}
+
+
+.venue-address {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 2;
+
+    color: var(--muted);
+
+}
+
+
+.gold-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 35px;
+
+    padding:
+        16px
+        25px;
+
+    border:
+        1px solid
+        var(--gold);
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    transition:
+        .4s ease;
+
+}
+
+
+.gold-button:hover {
+
+    background: var(--gold);
+
+    color: white;
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* =========================================
+   FAMILY
+========================================= */
+
+.family-section {
+
+    background: #efe5d5;
+
+}
+
+
+.family-list {
+
+    width: min(100%, 500px);
+
+    margin-top: 45px;
+
+}
+
+
+.family-list div {
+
+    padding: 18px 5px;
+
+    border-bottom:
+        1px solid
+        rgba(185,149,82,.25);
+
+    font-size: 19px;
+
+}
+
+
+.family-list div:first-child {
+
+    border-top:
+        1px solid
+        rgba(185,149,82,.25);
+
+}
+
+
+/* =========================================
+   FINAL
+========================================= */
+
+.final-section {
+
+    min-height: 90vh;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffaf3,
+            #e9decd
+        );
+
+}
+
+
+.crescent {
+
+    font-size: 55px;
+
+    color: var(--gold);
+
+    margin-bottom: 30px;
+
+    animation:
+        floatCrescent
+        4s
+        ease-in-out
+        infinite;
+
+}
+
+
+.final-names {
+
+    margin-top: 45px;
+
+    font-size: 23px;
+
+    color: var(--maroon);
+
+}
+
+
+.final-names span {
+
+    margin: 0 12px;
+
+    color: var(--gold);
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+    padding:
+        60px
+        20px;
+
+    text-align: center;
+
+    background: #382c27;
+
+    color: #d5c7b0;
+
+}
+
+
+footer div {
+
+    color: var(--gold);
+
+    font-size: 22px;
+
+}
+
+
+footer p {
+
+    margin-top: 15px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 4px;
+
+}
+
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform:
+        translateY(45px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+}
+
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes openingReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes starGlow {
+
+    0%,
+    100% {
+
+        opacity: .45;
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.15);
+
+    }
+
+}
+
+
+@keyframes lineGrow {
+
+    from {
+
+        transform:
+            scaleX(0);
+
+    }
+
+    to {
+
+        transform:
+            scaleX(1);
+
+    }
+
+}
+
+
+@keyframes archReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.92);
+
+    }
+
+    to {
+
+        opacity: .8;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes scrollLine {
+
+    0%,
+    100% {
+
+        transform:
+            scaleY(.5);
+
+        opacity: .4;
+
+    }
+
+    50% {
+
+        transform:
+            scaleY(1);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+@keyframes floatCrescent {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px);
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+
+
+    .section {
+
+        padding:
+            90px
+            20px;
+
+    }
+
+
+    .bismillah {
+
+        font-size: 20px;
+
+    }
+
+
+    .opening-title {
+
+        letter-spacing: 2px;
+
+    }
+
+
+    .opening-title span {
+
+        letter-spacing: 5px;
+
+    }
+
+
+    .date-display {
+
+        gap: 15px;
+
+    }
+
+
+    .date-number {
+
+        font-size: 42px;
+
+    }
+
+
+    .date-time {
+
+        padding-left: 15px;
+
+    }
+
+
+    .countdown {
+
+        gap: 5px;
+
+    }
+
+
+    .count-box {
+
+        padding:
+            20px
+            2px;
+
+    }
+
+
+    .big-date strong {
+
+        font-size: 70px;
+
+    }
+
+
+    .family-list div {
+
+        font-size: 17px;
+
+    }
+
+}
